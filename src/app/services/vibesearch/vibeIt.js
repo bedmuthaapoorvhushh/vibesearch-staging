@@ -18,7 +18,7 @@ export default async function vibeIt(
   price_range
 ) {
   if (mainQuery == "" && secondaryQuery == "") return;
-  if (!access_token)
+  if (!access_token && process.env.NODE_ENV !== "staging")
     window.location.href = config.redirect_url + "/components/ErrorNoLogin";
   let data = {
     query: mainQuery,
