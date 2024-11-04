@@ -24,11 +24,11 @@ const config = {
   SUPABASE_ANON_KEY:
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVhZW9reWVmc2RmYW13cXF6ZmtvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDkzNzExODYsImV4cCI6MjAyNDk0NzE4Nn0.iqWMB0debYgPRX5PjtJuIfy5ImxZfC9ol7A4EPFXmFU",
   supabaseClient: null,
-  vibesearchAPIEndpoint: vibesearchAPIEndpoints[process.env.NODE_ENV],
-  monitoringEndpoint: monitoringEndpoints[process.env.NODE_ENV],
+  vibesearchAPIEndpoint: vibesearchAPIEndpoints[process.env.SITE_ENV],
+  monitoringEndpoint: monitoringEndpoints[process.env.SITE_ENV],
   guestModeAccessToken:
     "P2H8RNXPvIiPoeM0iJEDjJ2Skk37h5pScMQF5oMRUXm3dKoUC2wxrWImx5ccA9VOrOoeaLcMQqn57vYDPucTkYnkkH6icUQy09vtd5eIrAIXhBtmUfAmPI3thD2OoUeF",
-  redirect_url: redirect_urls[process.env.NODE_ENV],
+  redirect_url: redirect_urls[process.env.SITE_ENV],
   brands: brands,
   queries: queries,
   genders: genders,
