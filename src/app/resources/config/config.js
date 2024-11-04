@@ -2,6 +2,7 @@ import { createClient } from "@supabase/supabase-js";
 import brands from "./brands";
 import queries from "./queries";
 import genders from "./genders";
+import process from "process";
 let redirect_urls = {
   production: "https://vibesearch.ai",
   development: "http://localhost:3000",
