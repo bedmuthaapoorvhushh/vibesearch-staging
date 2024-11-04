@@ -1,0 +1,63 @@
+.CheckYourVibe {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 100px;
+
+    .CheckYourVibe__Title {
+        font-weight: 700;
+        font-size: 40px;
+
+        @media screen and (max-width: 900px) {
+            font-size: 32;
+        }
+    }
+
+    .CheckYourVibe__SubTitle {
+        font-weight: 400;
+        font-size: 20px;
+        color: #606060;
+
+        @media screen and (max-width: 900px) {
+            font-size: 16;
+            width: 90vw;
+            display: flex;
+            justify-content: center;
+            text-align: center;
+        }
+    }
+
+    .CheckYourVibe__SwipeGameMobile {
+        display: none;
+
+        @media screen and (max-width: 900px) {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .CheckYourVibe__AnimsWrapperMobile {
+            display: flex;
+            justify-content: space-around;
+            width: 100vw;
+            margin-top: 30pt;
+        }
+
+        .CheckYourVibe__SwipeGameMobile {
+            margin-top: 30pt;
+        }
+        
+    }
+
+    .CheckYourVibe__SwipeGame {
+        height: 90vh;
+        width: 100vw;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+
+        @media screen and (max-width: 900px) {
+            display: none;
+        }
+    }
+}

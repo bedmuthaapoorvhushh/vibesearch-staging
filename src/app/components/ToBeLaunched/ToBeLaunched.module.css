@@ -1,0 +1,45 @@
+.ToBeLaunched__Content {
+  display: flex;
+  height: 75vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+@media screen and (max-width: 900px) {
+  .ToBeLaunched__Content {
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+.ToBeLaunched__Content .ToBeLaunched__CompaniesMarquee {
+  width: 60vw;
+}
+@media screen and (max-width: 900px) {
+  .ToBeLaunched__Content .ToBeLaunched__CompaniesMarquee {
+    display: none;
+  }
+}
+.ToBeLaunched__Content .ToBeLaunched__CompaniesMarqueeMobile {
+  display: none;
+}
+@media screen and (max-width: 900px) {
+  .ToBeLaunched__Content .ToBeLaunched__CompaniesMarqueeMobile {
+    display: block;
+  }
+}
+.ToBeLaunched__Content .ToBeLaunched__VibeLogoMobile {
+  display: none;
+}
+@media screen and (max-width: 900px) {
+  .ToBeLaunched__Content .ToBeLaunched__VibeLogoMobile {
+    display: block;
+    width: 30vw;
+  }
+}
+
+.ToBeLaunched__Footer {
+  position: relative;
+  bottom: 0;
+  height: 42px;
+  overflow: hidden;
+}/*# sourceMappingURL=ToBeLaunched.module.css.map */
