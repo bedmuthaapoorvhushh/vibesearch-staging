@@ -1,6 +1,7 @@
 import config from "../../resources/config/config";
 import resources from "../../resources/resources";
 import axios from "axios";
+import process from "process";
 export default async function vibeIt(
   mainQuery,
   secondaryQuery,
