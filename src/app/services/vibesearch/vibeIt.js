@@ -19,8 +19,13 @@ export default async function vibeIt(
 ) {
   if (mainQuery == "" && secondaryQuery == "") return;
   console.log(process.env.SITE_ENV)
-  if (!access_token && process.env.SITE_ENV !== "staging")
-    window.location.href = config.redirect_url + "/components/ErrorNoLogin";
+  if (process.env.SITE_ENV == "staging"){
+    
+  }else{
+    if(!access_token){
+      window.location.href = config.redirect_url + "/components/ErrorNoLogin";
+    }
+  }
   let data = {
     query: mainQuery,
     current_page: currentPage,
@@ -67,13 +72,14 @@ export default async function vibeIt(
 
     results.data.brands ? setBrands(results.data.brands) : ""; // Update brands state
   } catch (e) {
-    if (e.response && e.response.status === 500) {
-      window.location.href = config.redirect_url + "/components/ErrorPage500";
-    } else if (e.response && e.response.status === 400) {
-      window.location.href = config.redirect_url + "/components/ErrorPage400";
-    } else if (e.response && e.response.status === 401) {
-      window.location.href = config.redirect_url + "/components/ErrorNoLogin";
-    } else {
-    }
+    console.log(e)
+    // if (e.response && e.response.status === 500) {
+    //   window.location.href = config.redirect_url + "/components/ErrorPage500";
+    // } else if (e.response && e.response.status === 400) {
+    //   window.location.href = config.redirect_url + "/components/ErrorPage400";
+    // } else if (e.response && e.response.status === 401) {
+    //   window.location.href = config.redirect_url + "/components/ErrorNoLogin";
+    // } else {
+    // }
   }
 }
