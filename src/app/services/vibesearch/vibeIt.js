@@ -20,7 +20,7 @@ export default async function vibeIt(
 ) {
   if (mainQuery == "" && secondaryQuery == "") return;
   console.log(process.env.SITE_ENV)
-  if (process.env.SITE_ENV == "staging"){
+  if (process.env.NEXT_PUBLIC_SITE_ENV == "staging"){
     
   }else{
     if(!access_token){
