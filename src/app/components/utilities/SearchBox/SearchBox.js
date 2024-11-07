@@ -3,7 +3,6 @@
 import styles from "./SearchBox.module.css";
 import resources from "./resources/resources";
 import config from "../../../resources/config/config";
-import FileInputBox from "./FileInputBox/FileInputBox";
 import { Suspense, useState, useEffect } from "react";
 import services from "../../../services/services";
 
@@ -37,8 +36,8 @@ export default function SearchBox(props) {
         isLoggedIn
           ? (window.location.href = `${config.redirect_url}/components/SearchResults?query=${searchQuery}`)
           : alert("Please login to search");
-      }else{
-        alert('Please enter a search query');
+      } else {
+        alert("Please enter a search query");
       }
     }
   };
@@ -57,31 +56,34 @@ export default function SearchBox(props) {
       >
         <img src={resources.magnifyingGlass.src} alt="Vibe Search Icon" />
         <input
-          className={styles.SearchBox__Input}
+          className={`${styles.SearchBox__Input} figtree`}
           id="SearchBox__Input"
           value={searchQuery} // Controlled input for search query
           placeholder={props.content}
           onChange={(e) => setSearchQuery(e.target.value)} // Update state on input change
           onKeyDown={handleSearch} // Handle Enter key for search
           style={{
-            width: props.boxWidth ? props.boxWidth - 20 + "vw" : "",
+            width: props.boxWidth ? props.boxWidth - 5 + "vw" : "",
           }}
         />
-        <img
-          src={resources.cross.src}
-          className={styles.SearchBox__Icon}
-          alt="Clear Icon"
-          onClick={handleClearSearch} // Clear search input
-        />
-        <FileInputBox />
-        <img
+        {searchQuery !== "" ? (
+          <img
+            src={resources.cross.src}
+            className={styles.SearchBox__Icon}
+            alt="Clear Icon"
+            onClick={handleClearSearch} // Clear search input
+          />
+        ) : (
+          <></>
+        )}
+        {/* <img
           src={resources.camera.src}
           className={styles.SearchBox__Icon}
           alt="Camera Icon"
           onClick={() =>
             document.getElementById("searchBox__fileInput").click()
           }
-        />
+        /> */}
       </div>
     </Suspense>
   );

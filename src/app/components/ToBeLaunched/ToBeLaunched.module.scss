@@ -3,7 +3,7 @@
     height: 75vh;
     display: flex;
     align-items: center;
-    overflow: hidden;
+    // overflow: hidden;
     @media screen and (max-width: 900px){
         flex-direction: column;
         justify-content: center;
@@ -28,9 +28,9 @@
         }
     }
 }
-.ToBeLaunched__Footer{
-    position: relative;
-    bottom: 0;
-    height: 42px;
-    overflow: hidden;
-}
+// .ToBeLaunched__Footer{
+//     position: relative;
+//     bottom: 0;
+//     height: 42px;
+//     overflow: hidden;
+// }

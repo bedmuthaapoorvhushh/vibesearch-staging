@@ -19,11 +19,10 @@ export default async function vibeIt(
   price_range
 ) {
   if (mainQuery == "" && secondaryQuery == "") return;
-  console.log(process.env.SITE_ENV)
-  if (process.env.NEXT_PUBLIC_SITE_ENV == "staging"){
-    
-  }else{
-    if(!access_token){
+  console.log(process.env.SITE_ENV);
+  if (process.env.NEXT_PUBLIC_SITE_ENV == "staging") {
+  } else {
+    if (!access_token) {
       window.location.href = config.redirect_url + "/components/ErrorNoLogin";
     }
   }
@@ -51,8 +50,8 @@ export default async function vibeIt(
       header
     );
     let products = {};
-    console.log(results)
-    if (results["data"]["message"] && currentPage == '1') {
+    console.log(results);
+    if (results["data"]["message"] && currentPage == "1") {
       window.location.href = config.redirect_url + "/components/ErrorPage400";
     }
     if (results["data"]["message"]) {
@@ -73,7 +72,7 @@ export default async function vibeIt(
 
     results.data.brands ? setBrands(results.data.brands) : ""; // Update brands state
   } catch (e) {
-    console.log(e)
+    console.log(e);
     // if (e.response && e.response.status === 500) {
     //   window.location.href = config.redirect_url + "/components/ErrorPage500";
     // } else if (e.response && e.response.status === 400) {
