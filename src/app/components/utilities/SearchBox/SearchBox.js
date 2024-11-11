@@ -1,12 +1,12 @@
 "use client"; // Ensure that this is a client component
-
 import styles from "./SearchBox.module.css";
 import resources from "./resources/resources";
 import config from "../../../resources/config/config";
 import { Suspense, useState, useEffect } from "react";
 import services from "../../../services/services";
-
-export default function SearchBox(props) {
+import figtree from "../../../fonts/Figtree";
+import Image from "next/image";
+export default function SearchBox({ boxWidth, inputWidth, content }) {
   // State to handle search input
   const [searchQuery, setSearchQuery] = useState("");
   // State to handle user login status
@@ -51,39 +51,52 @@ export default function SearchBox(props) {
       <div
         className={styles.SearchBox}
         style={{
-          width: props.boxWidth ? props.boxWidth + "vw" : "",
+          width: boxWidth ? boxWidth + "vw" : "",
         }}
       >
-        <img src={resources.magnifyingGlass.src} alt="Vibe Search Icon" />
+        <Image
+          src={resources.magnifyingGlass.src}
+          width={14}
+          height={14}
+          alt="Vibe Search Icon"
+        />
         <input
-          className={`${styles.SearchBox__Input} figtree`}
+          className={`${styles.SearchBox__Input} ${figtree.className}`}
           id="SearchBox__Input"
           value={searchQuery} // Controlled input for search query
-          placeholder={props.content}
+          placeholder={content}
           onChange={(e) => setSearchQuery(e.target.value)} // Update state on input change
           onKeyDown={handleSearch} // Handle Enter key for search
           style={{
-            width: props.boxWidth ? props.boxWidth - 5 + "vw" : "",
+            width: inputWidth
+              ? inputWidth + "vw"
+              : boxWidth
+              ? boxWidth - 5 + "vw"
+              : "",
           }}
         />
         {searchQuery !== "" ? (
-          <img
+          <Image
             src={resources.cross.src}
             className={styles.SearchBox__Icon}
             alt="Clear Icon"
+            width={14}
+            height={14}
             onClick={handleClearSearch} // Clear search input
           />
         ) : (
           <></>
         )}
-        {/* <img
+        <Image
           src={resources.camera.src}
           className={styles.SearchBox__Icon}
           alt="Camera Icon"
+          width={14}
+          height={14}
           onClick={() =>
             document.getElementById("searchBox__fileInput").click()
           }
-        /> */}
+        />
       </div>
     </Suspense>
   );
