@@ -2,6 +2,7 @@ import config from "../../resources/config/config";
 import resources from "../../resources/resources";
 import axios from "axios";
 import process from "process";
+import hasValidImage from "./hasValidImage";
 export default async function vibeIt(
   mainQuery,
   secondaryQuery,
@@ -50,7 +51,7 @@ export default async function vibeIt(
       header
     );
     let products = {};
-    console.log(results);
+
     if (results["data"]["message"] && currentPage == "1") {
       window.location.href = config.redirect_url + "/components/ErrorPage400";
     }
@@ -60,6 +61,11 @@ export default async function vibeIt(
     }
     for (let key in results["data"]) {
       if (results["data"].hasOwnProperty(key) && key != "brands") {
+        let isValidImg = await hasValidImage(results["data"][key].image);
+        console.log(isValidImg);
+        if (!isValidImg) {
+          continue;
+        }
         products[currentPage + " " + key] = results["data"][key];
       }
     }

@@ -75,13 +75,9 @@ export default function Header() {
             fill="#222222"
           />
         </svg>
-        <FiHeart
-          size={24}
-          cursor="pointer"
-          onClick={() => {
-            utilities.ComingSoonToast(toast);
-          }}
-        />
+        <Link href={"/wishlist"}>
+          <FiHeart size={24} cursor="pointer" />
+        </Link>
       </HStack>
     </HStack>
   );
