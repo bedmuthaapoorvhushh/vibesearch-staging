@@ -20,7 +20,7 @@ export default async function vibeIt(
   price_range
 ) {
   if (mainQuery == "" && secondaryQuery == "") return;
-  console.log(process.env.SITE_ENV);
+
   if (process.env.NEXT_PUBLIC_SITE_ENV == "staging") {
   } else {
     if (!access_token) {
@@ -60,10 +60,28 @@ export default async function vibeIt(
       return;
     }
     for (let key in results["data"]) {
+      let cachedErrors = localStorage.getItem("errorImages");
+      if (!cachedErrors) {
+        localStorage.setItem("errorImages", JSON.stringify([]));
+      }
+      let temp =
+        localStorage.getItem("errorImages") == "{}"
+          ? "[]"
+          : localStorage.getItem("errorImages");
+
+      cachedErrors = new Set(JSON.parse(temp));
+      if (cachedErrors.has(results["data"][key].image)) {
+        continue;
+      }
       if (results["data"].hasOwnProperty(key) && key != "brands") {
         let isValidImg = await hasValidImage(results["data"][key].image);
-        console.log(isValidImg);
+
         if (!isValidImg) {
+          cachedErrors.add(results["data"][key].image);
+          localStorage.setItem(
+            "errorImages",
+            JSON.stringify([...cachedErrors])
+          );
           continue;
         }
         products[currentPage + " " + key] = results["data"][key];
@@ -78,7 +96,7 @@ export default async function vibeIt(
 
     results.data.brands ? setBrands(results.data.brands) : ""; // Update brands state
   } catch (e) {
-    console.log(e);
+    //console.log(e);
     // if (e.response && e.response.status === 500) {
     //   window.location.href = config.redirect_url + "/components/ErrorPage500";
     // } else if (e.response && e.response.status === 400) {
