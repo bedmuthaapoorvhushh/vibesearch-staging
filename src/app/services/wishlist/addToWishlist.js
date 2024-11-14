@@ -12,7 +12,7 @@ export default async function addToWishList(productId, access_token) {
   };
   try {
     let results = await axios.post(
-      resources.config.monitoringEndpoint + "/addin-wishlist",
+      resources.config["vibesearchAPIEndpoint"] + "/addin-wishlist",
       data,
       header
     );

@@ -3,6 +3,7 @@ import brands from "./brands";
 import queries from "./queries";
 import genders from "./genders";
 import process from "process";
+import featureFlags from "./featureFlags";
 let redirect_urls = {
   production: "https://vibesearch.ai",
   development: "http://localhost:3000",
@@ -34,6 +35,7 @@ const config = {
   brands: brands,
   queries: queries,
   genders: genders,
+  featureFlags: featureFlags
 };
 
 function createSupabaseClient() {

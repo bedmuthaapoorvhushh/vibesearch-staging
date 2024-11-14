@@ -11,7 +11,7 @@ export default async function removeFromWishlist(productId, access_token) {
   };
   try {
     let results = await axios.post(
-      resources.config.monitoringEndpoint + "/removefrom-wishlist",
+      resources.config["vibesearchAPIEndpoint"] + "/removefrom-wishlist",
       data,
       header
     );

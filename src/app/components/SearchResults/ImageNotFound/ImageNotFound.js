@@ -1,5 +1,5 @@
 import figtree from "../../../fonts/Figtree";
-import styles from "./ImageNotFound.module.css";
+import styles from "./ImageNotFound.module.scss";
 import QuestionMark from "./resources/QuestionMark.svg";
 import Image from "next/image";
 export default function ImageNotFound(props) {
@@ -11,7 +11,7 @@ export default function ImageNotFound(props) {
       className={`${styles.ImageNotFound} ${figtree.className}`}
     >
       <div className={`${styles.ImageNotFound__Question}`}>
-        <Image src={QuestionMark.src} width={"40"} height={"42"} />
+        <Image alt="image not found placeholder" src={QuestionMark.src} width={"40"} height={"42"} />
       </div>
       <div className={`${styles.ImageNotFound__Text}`}>
         Click to visit
