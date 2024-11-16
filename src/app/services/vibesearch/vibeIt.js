@@ -74,16 +74,16 @@ export default async function vibeIt(
         continue;
       }
       if (results["data"].hasOwnProperty(key) && key != "brands") {
-        let isValidImg = await hasValidImage(results["data"][key].image);
+        // let isValidImg = await hasValidImage(results["data"][key].image);
 
-        if (!isValidImg) {
-          cachedErrors.add(results["data"][key].image);
-          localStorage.setItem(
-            "errorImages",
-            JSON.stringify([...cachedErrors])
-          );
-          continue;
-        }
+        // if (!isValidImg) {
+        //   cachedErrors.add(results["data"][key].image);
+        //   localStorage.setItem(
+        //     "errorImages",
+        //     JSON.stringify([...cachedErrors])
+        //   );
+        //   continue;
+        // }
         products[currentPage + " " + key] = results["data"][key];
       }
     }
