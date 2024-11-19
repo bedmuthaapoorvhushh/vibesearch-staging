@@ -42,6 +42,7 @@ export default function SearchBox({ boxWidth, inputWidth, content }) {
         className={styles.SearchBox}
         style={{
           width: boxWidth ? boxWidth + "vw" : "",
+          justifyContent: searchQuery == "" ? "flex-start" : "space-between",
         }}
       >
         <Image
@@ -58,7 +59,9 @@ export default function SearchBox({ boxWidth, inputWidth, content }) {
           value={searchQuery} // Controlled input for search query
           placeholder={content}
           onChange={(e) => setSearchQuery(e.target.value)} // Update state on input change
-          onKeyDown={handleSearch} // Handle Enter key for search
+          onKeyDown={(event) => {
+            handleSearch(event, searchQuery, isLoggedIn);
+          }} // Handle Enter key for search
           style={{
             width: inputWidth
               ? inputWidth + "vw"
@@ -75,7 +78,9 @@ export default function SearchBox({ boxWidth, inputWidth, content }) {
             alt="Clear Icon"
             width={20}
             height={20}
-            onClick={handleClearSearch} // Clear search input
+            onClick={() => {
+              handleClearSearch();
+            }} // Clear search input
           />
         ) : (
           <></>

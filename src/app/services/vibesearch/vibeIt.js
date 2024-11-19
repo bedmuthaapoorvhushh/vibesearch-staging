@@ -74,16 +74,18 @@ export default async function vibeIt(
         continue;
       }
       if (results["data"].hasOwnProperty(key) && key != "brands") {
-        // let isValidImg = await hasValidImage(results["data"][key].image);
+        if (config.featureFlags.isValidImageCheck) {
+          let isValidImg = await hasValidImage(results["data"][key].image);
 
-        // if (!isValidImg) {
-        //   cachedErrors.add(results["data"][key].image);
-        //   localStorage.setItem(
-        //     "errorImages",
-        //     JSON.stringify([...cachedErrors])
-        //   );
-        //   continue;
-        // }
+          if (!isValidImg) {
+            cachedErrors.add(results["data"][key].image);
+            localStorage.setItem(
+              "errorImages",
+              JSON.stringify([...cachedErrors])
+            );
+            continue;
+          }
+        }
         products[currentPage + " " + key] = results["data"][key];
       }
     }
@@ -96,14 +98,16 @@ export default async function vibeIt(
 
     results.data.brands ? setBrands(results.data.brands) : ""; // Update brands state
   } catch (e) {
-    //console.log(e);
-    // if (e.response && e.response.status === 500) {
-    //   window.location.href = config.redirect_url + "/components/ErrorPage500";
-    // } else if (e.response && e.response.status === 400) {
-    //   window.location.href = config.redirect_url + "/components/ErrorPage400";
-    // } else if (e.response && e.response.status === 401) {
-    //   window.location.href = config.redirect_url + "/components/ErrorNoLogin";
-    // } else {
-    // }
+    if (process.env.NEXT_PUBLIC_SITE_ENV != "staging") {
+      console.log(e);
+      if (e.response && e.response.status === 500) {
+        window.location.href = config.redirect_url + "/components/ErrorPage500";
+      } else if (e.response && e.response.status === 400) {
+        window.location.href = config.redirect_url + "/components/ErrorPage400";
+      } else if (e.response && e.response.status === 401) {
+        window.location.href = config.redirect_url + "/components/ErrorNoLogin";
+      } else {
+      }
+    }
   }
 }
