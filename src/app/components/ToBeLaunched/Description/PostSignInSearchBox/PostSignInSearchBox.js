@@ -17,7 +17,6 @@ export default function PostSignInSearchBox(props) {
         <AnimatedSearchBox boxWidth={87} inputWidth={68}></AnimatedSearchBox>
         <div className={`${styles.Description__ImageAndFashionFlexMobile}`}>
           <utilities.ImageSearchButton></utilities.ImageSearchButton>
-          <utilities.FashionDiceRoll></utilities.FashionDiceRoll>
         </div>
       </div>
       <div className={styles.Description__SignIn}>

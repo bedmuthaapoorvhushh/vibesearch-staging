@@ -25,7 +25,7 @@ export default function MenuBar() {
           boxWidth={35}
         ></utilities.AnimatedSearchBox>
       </Box>
-      {/* <FashionDiceRollButton></FashionDiceRollButton> */}
+      
     </HStack>
   );
 }

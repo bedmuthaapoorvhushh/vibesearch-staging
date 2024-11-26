@@ -32,16 +32,12 @@ export default function SearchResults() {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const searchParams = useSearchParams();
   const gridRef = useRef(null);
-
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { brandDrawer, setIsBrandDrawer } = useState(false);
-
   const [brands, setBrands] = useState([]); // State to hold brands
-
   const loadingBarRef = useRef(null);
   const [isMobile] = useMediaQuery("(max-width: 768px)");
   const [isLargerThanMobile] = useMediaQuery("(min-width: 769px)");
-
   let [errorImages, setErrorImages] = useState(new Set([]));
   const [touchStartY, setTouchStartY] = useState(0);
   const [priceRange, setPriceRange] = useState([10, 1050]);

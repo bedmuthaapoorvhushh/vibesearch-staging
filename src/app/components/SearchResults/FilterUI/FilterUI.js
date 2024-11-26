@@ -1,11 +1,14 @@
 "use client";
-import {useDisclosure } from "@chakra-ui/react";
-import { useState } from "react";
+import { useDisclosure } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 import FeatureBar from "./FeatureBar/FeatureBar";
 import Categories from "./Categories/Categories";
 import LeftDrawer from "./LeftDrawer/LeftDrawer";
 import { Divider } from "@chakra-ui/react";
-
+import utilities from "../../utilities/utilities";
+import styles from "./FilterUI.module.scss";
+import services from "../../../services/services";
+import Resources from "../../../resources/resources";
 const FilterUI = ({
   setSelectedBrands,
   selectedBrands,
@@ -41,9 +44,64 @@ const FilterUI = ({
     setSelectedBrands([]); // Clear selected brands
     window.location.reload(); // Reload the page
   };
+  let [isImageSearch, setIsImageSearch] = useState(false);
+  useEffect(() => {
+    (async () => {
+      setIsImageSearch(await services.vibesearch.isImageSearch(null));
+    })();
+  }, []);
+  let [queryImage, setQueryImage] = useState("");
+  useEffect(() => {
+    (async () => {
+      console.log(isImageSearch);
+      isImageSearch
+        ? setQueryImage(await services.vibesearch.getQueryImage())
+        : "";
+    })();
+  }, [isImageSearch]);
 
   return (
     <>
+      <div className={styles.FilterUI__SearchBoxAndDiceRollWrapper}>
+        <div className={styles.FilterUI__SearchBoxAndDiceRoll}>
+          <div className={styles.FilterUI__SearchBoxWrapper}>
+            <utilities.AnimatedSearchBox
+              boxWidth={64}
+              inputWidth={40}
+            ></utilities.AnimatedSearchBox>
+          </div>
+          <utilities.FashionDiceRoll
+            buttonWidth={"20vw"}
+          ></utilities.FashionDiceRoll>
+        </div>
+      </div>
+      <div className={styles.FilterUI__ImageSearchButtonWrapper}>
+        {!isImageSearch ? (
+          <utilities.ImageSearchButton width={93}></utilities.ImageSearchButton>
+        ) : (
+          <div className={styles.FilterUI__PostImageSearch}>
+            <div className={styles.FilterUI__QueryImageWrapper}>
+              <div className={styles.FilterUI__QueryImage}>
+                <img
+                  className={styles.FilterUI__ClearImage}
+                  onClick={() => {
+                    setIsImageSearch(false);
+                    localStorage.clear("image-file");
+                  }}
+                  src={Resources.images.CrossIcon.src}
+                ></img>
+                <img
+                  className={styles.FilterUI__QueryImage}
+                  src={queryImage}
+                ></img>
+              </div>
+            </div>
+            <utilities.ImageSearchButton
+              width={74}
+            ></utilities.ImageSearchButton>
+          </div>
+        )}
+      </div>
       <FeatureBar onOpen={onOpen} query={query}></FeatureBar>
       <Divider
         mx={{ md: "4rem", base: "1rem" }}
