@@ -92,8 +92,9 @@ export default function SearchResults() {
       true,
       priceRange,
       selectedGenders.length > 0,
-      selectedGenders.length > 0 ? selectedGenders[0] : null
-    ,0);
+      selectedGenders.length > 0 ? selectedGenders[0] : null,
+      0
+    );
   };
   let [query, setQuery] = useState("");
   useEffect(() => {
@@ -152,7 +153,7 @@ export default function SearchResults() {
         selectedProduct={selectedProduct}
         allImages={allImages}
       ></SearchResultWrapper>
-      <Footer />
+      <utilities.Footer />
     </>
   );
 }
