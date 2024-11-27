@@ -3,7 +3,7 @@ import camera from "./resources/camera.svg";
 import FileInputBox from "./FileInputBox/FileInputBox";
 import Image from "next/image";
 import figtree from "../../../fonts/Figtree";
-export default function ImageSearchButton({ width }) {
+export default function ImageSearchButton({ width, title }) {
   return (
     <div
       style={{ width: width ? width + "vw" : "inherit" }}
@@ -25,7 +25,7 @@ export default function ImageSearchButton({ width }) {
             height={"25"}
           />
         </div>
-        <div>Image Search</div>
+        <div>{title? title: "Image Search"}</div>
       </div>
     </div>
   );

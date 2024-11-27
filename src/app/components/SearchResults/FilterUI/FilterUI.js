@@ -9,6 +9,7 @@ import utilities from "../../utilities/utilities";
 import styles from "./FilterUI.module.scss";
 import services from "../../../services/services";
 import Resources from "../../../resources/resources";
+import QueryImage from "../QueryImage/QueryImage";
 const FilterUI = ({
   setSelectedBrands,
   selectedBrands,
@@ -53,7 +54,6 @@ const FilterUI = ({
   let [queryImage, setQueryImage] = useState("");
   useEffect(() => {
     (async () => {
-      console.log(isImageSearch);
       isImageSearch
         ? setQueryImage(await services.vibesearch.getQueryImage())
         : "";
@@ -79,25 +79,14 @@ const FilterUI = ({
         {!isImageSearch ? (
           <utilities.ImageSearchButton width={93}></utilities.ImageSearchButton>
         ) : (
-          <div className={styles.FilterUI__PostImageSearch}>
-            <div className={styles.FilterUI__QueryImageWrapper}>
-              <div className={styles.FilterUI__QueryImage}>
-                <img
-                  className={styles.FilterUI__ClearImage}
-                  onClick={() => {
-                    setIsImageSearch(false);
-                    localStorage.clear("image-file");
-                  }}
-                  src={Resources.images.CrossIcon.src}
-                ></img>
-                <img
-                  className={styles.FilterUI__QueryImage}
-                  src={queryImage}
-                ></img>
-              </div>
-            </div>
+          <div className={styles.FilterUI__PostImageSearchMobile}>
+            <QueryImage
+              queryImage={queryImage}
+              setIsImageSearch={setIsImageSearch}
+            ></QueryImage>
             <utilities.ImageSearchButton
               width={74}
+              title={"Change Image"}
             ></utilities.ImageSearchButton>
           </div>
         )}
@@ -127,6 +116,7 @@ const FilterUI = ({
         setPriceRange={setPriceRange}
         setSelectedBrands={setSelectedBrands}
         setSelectedGenders={setSelectedGenders}
+        selectedGenders={selectedGenders}
       ></LeftDrawer>
     </>
   );
